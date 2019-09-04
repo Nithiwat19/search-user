@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Search User Github</h2>
+<hr />
+
+<form action="form1" method="post">
+    <table>
+        <tr>
+            <td width="60px">Search : </td>
+            <td width="200px"><input type="text" name="filter" autocomplete="off"/></td>
+            <td width="80"><input type="submit" value="Search" /></td>
+            <td>(ex. KirinDave , josh)</td>
+        </tr>
+    </table>
+</form>
+<hr />
+<table id="myTable">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Post Name</th>
+            <th>Post Description</th>
+            <th>Url.</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $("#myTable").DataTable({
+            ajax: {
+                url: 'http://localhost:59801/Home/CustomerJson', //localhost:59801 เปลี่ยนตาม url ของ server
+                dataSrc: ""
+            },
+            columns: [
+                { data: "owner.login" },
+                { data: "name" },
+                { data: "description" },
+                { data: "html_url" }
+
+            ]
+        });
+    </script>
+}
